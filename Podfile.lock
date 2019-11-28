@@ -15,9 +15,14 @@ PODS:
   - Presentation (1.0.0):
     - Common
     - Domain
+    - SDWebImage (~> 5.0)
   - Presentation/Tests (1.0.0):
     - Common
     - Domain
+    - SDWebImage (~> 5.0)
+  - SDWebImage (5.3.2):
+    - SDWebImage/Core (= 5.3.2)
+  - SDWebImage/Core (5.3.2)
 
 DEPENDENCIES:
   - Common (from `Modules/Common`)
@@ -28,6 +33,10 @@ DEPENDENCIES:
   - Networking/Tests (from `Modules/Networking`)
   - Presentation (from `Modules/Presentation`)
   - Presentation/Tests (from `Modules/Presentation`)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
 
 EXTERNAL SOURCES:
   Common:
@@ -46,7 +55,8 @@ SPEC CHECKSUMS:
   Data: 7b67ee1bd0d884d1bc6adcc7f77c9e68d960125c
   Domain: ee76a9353bac305c5ae2c4fe67b9a20a44c4e15a
   Networking: ec72d21cc62d8ee3951a2c3331c19046b19cedbe
-  Presentation: 22312cb22b99af40531a6cfefc39fafe1bfab521
+  Presentation: 0fa37b1d2377cfd23c9fff72d2982d0bf980f659
+  SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
 
 PODFILE CHECKSUM: 3a535f1c71d6326104be6becafaff349ddd46e15
 

@@ -23,5 +23,5 @@ Presentation Module
 
   s.dependency 'Domain'
   s.dependency 'Common'
-
+  s.dependency 'SDWebImage', '~> 5.0'
 end

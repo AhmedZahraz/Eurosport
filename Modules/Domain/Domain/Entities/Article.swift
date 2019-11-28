@@ -9,13 +9,14 @@ import Foundation
 
 public typealias MovieId = Int
 
-public struct MoviesPage {
-    public let articles: [Article]
-    
-    public init(articles: [Article]) {
-        self.articles = articles
-    }
-}
+public typealias Articles = [Article]
+//public struct MoviesPage {
+//    public let articles: [Article]
+//    
+//    public init(articles: [Article]) {
+//        self.articles = articles
+//    }
+//}
 
 public class Article {
     public let timestamp: Int64

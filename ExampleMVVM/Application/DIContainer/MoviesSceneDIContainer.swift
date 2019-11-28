@@ -59,24 +59,12 @@ class MoviesSceneDIContainer {
     }
     
     // MARK: - Movie Details
-    func makeMoviesDetailsViewController(title: String,
-                                         overview: String,
-                                         posterPlaceholderImage: Data?,
-                                         posterPath: String?) -> UIViewController {
-        return MovieDetailsViewController.create(with: makeMoviesDetailsViewModel(title: title,
-                                                                                  overview: overview,
-                                                                                  posterPlaceholderImage: posterPlaceholderImage,
-                                                                                  posterPath: posterPath))
+    func makeMoviesDetailsViewController(storyItem: MoviesListViewModel.StoryItem) -> UIViewController {
+        return MovieDetailsViewController.create(with: makeMoviesDetailsViewModel(storyItem: storyItem))
     }
     
-    func makeMoviesDetailsViewModel(title: String,
-                                    overview: String,
-                                    posterPlaceholderImage: Data?,
-                                    posterPath: String?) -> MovieDetailsViewModel {
-        return MovieDetailsViewModel(title: title,
-                                     overview: overview,
-                                     posterPlaceholderImage: posterPlaceholderImage,
-                                     posterPath: posterPath)
+    func makeMoviesDetailsViewModel(storyItem: MoviesListViewModel.StoryItem) -> MovieDetailsViewModel {
+        return MovieDetailsViewModel(storyItem: storyItem)
     }
     
     // MARK: - Movies Queries Suggestions List

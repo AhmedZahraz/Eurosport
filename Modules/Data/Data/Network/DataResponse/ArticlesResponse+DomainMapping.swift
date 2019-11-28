@@ -9,14 +9,20 @@
 import Foundation
 import Domain
 
-extension MoviesPage {
-    static func map(moviesPage: ArticlesResponse) -> MoviesPage {
-        return MoviesPage(articles: moviesPage.stories.map(Article.map))
+extension Articles {
+    static func map(articlesResponse: ArticlesResponse) -> Articles {
+        return articlesResponse.stories.map(Story.map) + articlesResponse.videos.map(ArticleVideo.map)
     }
 }
 
-extension Article {
-    static func map(_ story: StoriesResponse) -> Article  {
-        return Article(timestamp: story.timestamp, title: story.title, image: story.posterPath, category: story.category)
+extension Story {
+    static func map(_ storyResponse: StoriesResponse) -> Story  {
+        return Story(timestamp: storyResponse.timestamp, title: storyResponse.title, intro: storyResponse.intro, content: storyResponse.content, image: storyResponse.posterPath, category: storyResponse.category, author: storyResponse.author)
+    }
+}
+
+extension ArticleVideo {
+    static func map(_ videoResponse: VideosResponse) -> ArticleVideo  {
+        return ArticleVideo(timestamp: videoResponse.timestamp, title: videoResponse.title, image: videoResponse.posterPath, url: videoResponse.videoPath, category: videoResponse.category, views: videoResponse.views ?? 0)
     }
 }

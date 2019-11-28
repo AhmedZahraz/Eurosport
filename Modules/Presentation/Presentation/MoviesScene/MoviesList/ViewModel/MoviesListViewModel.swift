@@ -10,9 +10,8 @@ import Common
 import Domain
 
 public enum MoviesListViewRoute {
-    case showMovieDetail(title: String, overview: String, posterPlaceholderImage: Data?, posterPath: String?)
-    case showMovieQueriesSuggestions
-    case closeMovieQueriesSuggestions
+    case showStoryDetail(storyItem: MoviesListViewModel.StoryItem)
+    case playVideo(url: String)
 }
 
 public protocol MoviesListViewRouter {
@@ -43,8 +42,8 @@ public class MoviesListViewModel {
         self.searchMoviesUseCase = searchMoviesUseCase
     }
     
-    private func appendPage(moviesPage: MoviesPage) {
-        self.items.value = items.value + moviesPage.articles.map{ MoviesListViewModel.Item(article: $0) }
+    private func appendPage(articles: Articles) {
+        self.items.value = items.value + articles.map{ MoviesListViewModel.Item.map(article: $0) }
     }
     
     private func resetPages() {
@@ -59,7 +58,7 @@ public class MoviesListViewModel {
             guard let strongSelf = self else { return }
             switch result {
             case .success(let moviesPage):
-                strongSelf.appendPage(moviesPage: moviesPage)
+                strongSelf.appendPage(articles: moviesPage)
             case .failure(let error):
                 strongSelf.handle(error: error)
             }
@@ -83,19 +82,12 @@ extension MoviesListViewModel {
     public func didCancelSearch() {
         moviesLoadTask?.cancel()
     }
-
-    public func showQueriesSuggestions() {
-        router?.perform(.showMovieQueriesSuggestions)
-    }
-    
-    public func closeQueriesSuggestions() {
-        router?.perform(.closeMovieQueriesSuggestions)
-    }
     
     public func didSelect(item: MoviesListViewModel.Item) {
-        router?.perform(.showMovieDetail(title: item.title,
-                                         overview: item.overview,
-                                         posterPlaceholderImage: item.posterImage.value,
-                                         posterPath: item.posterPath))
+        if item is MoviesListViewModel.VideoItem {
+            router?.perform(.playVideo(url: (item as! MoviesListViewModel.VideoItem).videoPath ?? ""))
+        } else {
+            router?.perform(.showStoryDetail(storyItem: (item as! MoviesListViewModel.StoryItem)))
+        }
     }
 }

@@ -25,6 +25,9 @@
     ],
     "Common": [
 
+    ],
+    "SDWebImage": [
+      "~> 5.0"
     ]
   },
   "testspecs": [

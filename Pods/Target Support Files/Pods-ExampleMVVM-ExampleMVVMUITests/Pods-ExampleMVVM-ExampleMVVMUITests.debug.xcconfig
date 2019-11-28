@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Common" "${PODS_CONFIGURATION_BUILD_DIR}/Data" "${PODS_CONFIGURATION_BUILD_DIR}/Domain" "${PODS_CONFIGURATION_BUILD_DIR}/Networking" "${PODS_CONFIGURATION_BUILD_DIR}/Presentation"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Common" "${PODS_CONFIGURATION_BUILD_DIR}/Data" "${PODS_CONFIGURATION_BUILD_DIR}/Domain" "${PODS_CONFIGURATION_BUILD_DIR}/Networking" "${PODS_CONFIGURATION_BUILD_DIR}/Presentation" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Common/Common.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Data/Data.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Domain/Domain.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Networking/Networking.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Presentation/Presentation.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Common/Common.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Data/Data.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Domain/Domain.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Networking/Networking.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Presentation/Presentation.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "Common" -framework "Data" -framework "Domain" -framework "Networking" -framework "Presentation"
+OTHER_LDFLAGS = $(inherited) -framework "Common" -framework "Data" -framework "Domain" -framework "ImageIO" -framework "Networking" -framework "Presentation" -framework "SDWebImage"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

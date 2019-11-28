@@ -9,7 +9,7 @@ import Foundation
 import Common
 
 public protocol SearchMoviesUseCase {
-    func execute(completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable?
+    func execute(completion: @escaping (Result<Articles, Error>) -> Void) -> Cancellable?
 }
 
 public class DefaultSearchMoviesUseCase: SearchMoviesUseCase {
@@ -20,7 +20,7 @@ public class DefaultSearchMoviesUseCase: SearchMoviesUseCase {
         self.moviesRepository = moviesRepository
     }
     
-    public func execute(completion: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
+    public func execute(completion: @escaping (Result<Articles, Error>) -> Void) -> Cancellable? {
         return moviesRepository.moviesList { [weak self] result in
             guard let strongSelf = self else { return }
             

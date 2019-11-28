@@ -7,13 +7,12 @@
 
 import Foundation
 import UIKit
+import AVKit
 
 class DefaultMoviesListViewRouter: MoviesListViewRouter {
 
     weak var view: MoviesListViewController?
     let moviesListViewControllersFactory: MoviesListViewControllersFactory
-    
-    var moviesQueriesSuggestionsView: UIViewController?
     
     init(view: MoviesListViewController,
          moviesListViewControllersFactory: MoviesListViewControllersFactory) {
@@ -23,24 +22,20 @@ class DefaultMoviesListViewRouter: MoviesListViewRouter {
     
     func perform(_ route: MoviesListViewRoute) {
         switch route {
-        case .showMovieDetail(let title, let overview, let posterPlaceholderImage, let posterPath):
+        case .showStoryDetail(let storyItem):
             guard let view = view else { return }
-            let vc = moviesQueriesSuggestionsView ?? moviesListViewControllersFactory.makeMoviesDetailsViewController(title: title,
-                                                                                                                      overview: overview,
-                                                                                                                      posterPlaceholderImage: posterPlaceholderImage,
-                                                                                                                      posterPath: posterPath)
-            view.navigationController?.pushViewController(vc, animated: true)
-        case .showMovieQueriesSuggestions:
+            let vc = moviesListViewControllersFactory.makeMoviesDetailsViewController(storyItem: storyItem)
+            view.navigationController?.present(vc, animated: true)
+        case .playVideo(let videoPath):
             guard let view = view else { return }
-//            let vc = moviesQueriesSuggestionsView ?? moviesListViewControllersFactory.makeMoviesQueriesSuggestionsListViewController(delegate: view.viewModel)
-//            view.add(child: vc, container: view.suggestionsListContainer)
-//            moviesQueriesSuggestionsView = vc
-//            view.suggestionsListContainer.isHidden = false
-        case .closeMovieQueriesSuggestions:
-            guard let suggestionsListContainer = view?.suggestionsListContainer else { return }
-            moviesQueriesSuggestionsView?.remove()
-            moviesQueriesSuggestionsView = nil
-            suggestionsListContainer.isHidden = true
+            guard let url = URL(string: videoPath) else { return }
+            let player = AVPlayer(url: url)
+            let vc = AVPlayerViewController()
+            vc.player = player
+            
+            view.navigationController?.present(vc, animated: true) {
+                vc.player?.play()
+            }
         }
     }
 }

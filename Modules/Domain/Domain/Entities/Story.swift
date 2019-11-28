@@ -8,19 +8,20 @@
 import Foundation
 
 public class Story: Article {
-    public let intro: String = ""
-    public let content: String? = nil
-    public let author: String = ""
+    public let intro: String
+    public let content: String?
+    public let author: String
     
-//    public init(id: MovieId,
-//                title: String,
-//                posterPath: String?,
-//                overview: String,
-//                releaseDate: Date?) {
-//        self.id = id
-//        self.title = title
-//        self.posterPath = posterPath
-//        self.overview = overview
-//        self.releaseDate = releaseDate
-//    }
+    public init(timestamp: Int64,
+                title: String,
+                intro: String?,
+                content: String?,
+                image: String?,
+                category: String?,
+                author: String?) {
+        self.intro = intro ?? ""
+        self.content = content
+        self.author = author ?? ""
+        super.init(timestamp: timestamp, title: title, image: image, category: category)
+    }
 }

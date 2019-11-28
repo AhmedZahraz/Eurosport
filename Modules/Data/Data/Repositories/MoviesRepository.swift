@@ -21,13 +21,13 @@ public class DefaultMoviesRepository {
 
 extension DefaultMoviesRepository: MoviesRepository {
 
-    public func moviesList(with result: @escaping (Result<MoviesPage, Error>) -> Void) -> Cancellable? {
+    public func moviesList(with result: @escaping (Result<Articles, Error>) -> Void) -> Cancellable? {
         let endpoint = APIEndpoints.movies()
         
         return self.dataTransferService.request(with: endpoint) { (response: Result<ArticlesResponse, Error>) in
             switch response {
-            case .success(let moviesPage):
-                result(.success(MoviesPage.map(moviesPage: moviesPage)))
+            case .success(let articlesResponse):
+                result(.success(Articles.map(articlesResponse: articlesResponse).sorted(by: { $0.timestamp > $1.timestamp })))
                 return
             case .failure(let error):
                 result(.failure(error))

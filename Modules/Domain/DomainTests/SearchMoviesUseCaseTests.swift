@@ -11,18 +11,18 @@ import Common
 
 class SearchMoviesUseCaseTests: XCTestCase {
 
-    static var moviesPages: [MoviesPage] {
-        let page1 = MoviesPage(articles: [
-            Article(timestamp: 1, title: "title1", image: "/1", category: "category1"),
-            Article(timestamp: 2, title: "title2", image: "/2", category: "category2")])
-        let page2 = MoviesPage(articles: [
-            Article(timestamp: 3, title: "title3", image: "/3", category: "category3")])
-        return [page1, page2]
-    }
-
-    enum MoviesRepositorySuccessTestError: Error {
-        case failedFetching
-    }
+//    static var moviesPages: [MoviesPage] {
+//        let page1 = MoviesPage(articles: [
+//            Article(timestamp: 1, title: "title1", image: "/1", category: "category1"),
+//            Article(timestamp: 2, title: "title2", image: "/2", category: "category2")])
+//        let page2 = MoviesPage(articles: [
+//            Article(timestamp: 3, title: "title3", image: "/3", category: "category3")])
+//        return [page1, page2]
+//    }
+//
+//    enum MoviesRepositorySuccessTestError: Error {
+//        case failedFetching
+//    }
 
 //    class MoviesQueriesRepositoryMock: MoviesQueriesRepository {
 //        var recentQueries: [MovieQuery] = []

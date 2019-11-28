@@ -13,8 +13,6 @@ public class MoviesListViewController: UIViewController, StoryboardInstantiable,
     
     @IBOutlet weak private var contentView: UIView!
     @IBOutlet weak private var moviesListContainer: UIView!
-    @IBOutlet weak private(set) var suggestionsListContainer: UIView!
-    @IBOutlet weak private var searchBarContainer: UIView!
     @IBOutlet weak private var loadingView: UIActivityIndicatorView!
     @IBOutlet weak private var emptyDataLabel: UILabel!
     
@@ -36,9 +34,8 @@ public class MoviesListViewController: UIViewController, StoryboardInstantiable,
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("Movies", comment: "")
+        title = NSLocalizedString("Home", comment: "")
         emptyDataLabel.text = NSLocalizedString("Search results ", comment: "")
-        //setupSearchController()
         
         bind(to: viewModel)
         viewModel.viewDidLoad()
@@ -80,7 +77,6 @@ public class MoviesListViewController: UIViewController, StoryboardInstantiable,
         loadingView.isHidden = true
         emptyDataLabel.isHidden = true
         moviesListContainer.isHidden = true
-        suggestionsListContainer.isHidden = true
         moviesTableViewController?.update(isLoadingNextPage: false)
         
         if model.loadingType.value == .fullScreen {
@@ -93,76 +89,12 @@ public class MoviesListViewController: UIViewController, StoryboardInstantiable,
         } else {
             moviesListContainer.isHidden = false
         }
-        
-        updateQueriesSuggestionsVisibility()
     }
-    
-    private func updateQueriesSuggestionsVisibility() {
-        if searchController.searchBar.isFirstResponder {
-            viewModel.showQueriesSuggestions()
-        } else {
-            viewModel.closeQueriesSuggestions()
-        }
-    }
-}
-
-//extension MoviesListViewController: UISearchBarDelegate {
-//    public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-//        searchController.isActive = false
-//        moviesTableViewController?.tableView.setContentOffset(CGPoint.zero, animated: false)
-//        viewModel.didSearch(query: searchText)
-//    }
-//
-//    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        viewModel.didCancelSearch()
-//    }
-//}
-
-extension MoviesListViewController: UISearchControllerDelegate {
-    public func willPresentSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-    
-    public func willDismissSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-
-    public func didDismissSearchController(_ searchController: UISearchController) {
-        updateQueriesSuggestionsVisibility()
-    }
-}
-
-// MARK: - Setup Search Controller
-
-extension MoviesListViewController {
-//    private func setupSearchController() {
-//        searchController.delegate = self
-//        searchController.searchBar.delegate = self
-//        searchController.searchBar.placeholder = NSLocalizedString("Search Movies", comment: "")
-//        if #available(iOS 9.1, *) {
-//            searchController.obscuresBackgroundDuringPresentation = false
-//        } else {
-//            searchController.dimsBackgroundDuringPresentation = true
-//        }
-//        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = true
-//        searchController.searchBar.barStyle = .black
-//        searchController.searchBar.frame = searchBarContainer.bounds
-//        searchController.searchBar.autoresizingMask = [.flexibleWidth]
-//        searchBarContainer.addSubview(searchController.searchBar)
-//        definesPresentationContext = true
-//        searchController.accessibilityLabel = NSLocalizedString("Search Movies", comment: "")
-//    }
 }
 
 // MARK: - MoviesListViewControllersFactory
 
 public protocol MoviesListViewControllersFactory {
     
-    //func makeMoviesQueriesSuggestionsListViewController(delegate: MoviesQueryListViewModelDelegate) -> UIViewController
-    
-    func makeMoviesDetailsViewController(title: String,
-                                         overview: String,
-                                         posterPlaceholderImage: Data?,
-                                         posterPath: String?) -> UIViewController
+    func makeMoviesDetailsViewController(storyItem: MoviesListViewModel.StoryItem) -> UIViewController
 }

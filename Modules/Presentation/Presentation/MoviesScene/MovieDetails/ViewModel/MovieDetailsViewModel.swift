@@ -12,43 +12,34 @@ import Domain
 
 public class MovieDetailsViewModel {
     
-    private let posterPath: String?
+    
     
     // MARK: - OUTPUT
+    public private(set) var posterPath: Observable<String?> = Observable("")
     public private(set) var title: Observable<String> = Observable("")
-    public private(set) var posterImage: Observable<Data?> = Observable(nil)
-    public private(set) var overview: Observable<String> = Observable("")
+    public private(set) var category: Observable<String> = Observable("")
+    public private(set) var author: Observable<String> = Observable("")
+    public private(set) var description: Observable<String> = Observable("")
     
     private var imageLoadTask: Cancellable? { willSet { imageLoadTask?.cancel() } }
     private var alreadyLoadedImageWidth: Int?
     
-    public init(title: String,
-         overview: String,
-         posterPlaceholderImage: Data?,
-         posterPath: String?) {
-        self.title.value = title
-        self.overview.value = overview
-        self.posterImage.value = posterPlaceholderImage
-        self.posterPath = posterPath
-    }
-}
-
-// MARK: - INPUT. View event methods
-extension MovieDetailsViewModel {
-    public func viewDidLoad() { }
-    
-    public func updatePosterImage(width: Int) {
-        guard let posterPath = posterPath, alreadyLoadedImageWidth != width  else { return }
-        alreadyLoadedImageWidth = width
+    public init(storyItem: MoviesListViewModel.StoryItem) {
+        self.title.value = storyItem.title
         
-//        imageLoadTask = posterImagesRepository.image(with: posterPath, width: width) { [weak self] result in
-//            guard self?.posterPath == posterPath else { return }
-//            switch result {
-//            case .success(let data):
-//                self?.posterImage.value = data
-//            case .failure: break
-//            }
-//            self?.imageLoadTask = nil
-//        }
+        //
+        let date = Date(timeIntervalSince1970: TimeInterval(storyItem.timestamp))
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm" //Specify your format that you want
+        let strDate = dateFormatter.string(from: date)
+        //
+        let author = storyItem.author ?? ""
+        self.author.value = "Par \(author) - \(strDate)"
+
+        self.posterPath.value = storyItem.posterPath
+        self.category.value = storyItem.category.uppercased()
+        self.description.value = (storyItem.intro ?? "") + "\n" + (storyItem.content ?? "")
     }
 }

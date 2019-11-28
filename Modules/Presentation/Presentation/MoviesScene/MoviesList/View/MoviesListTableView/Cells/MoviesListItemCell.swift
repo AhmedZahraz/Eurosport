@@ -18,27 +18,38 @@ class MoviesListItemCell: UITableViewCell {
     @IBOutlet weak private var dateLabel: UILabel!
     @IBOutlet weak private var overviewLabel: UILabel!
     @IBOutlet weak private var posterImageView: UIImageView!
+    @IBOutlet weak var playImageView: UIImageView!
     
-    var viewModel: MoviesListViewModel.Item! { didSet { unbind(from: oldValue) } }
+    var viewModel: MoviesListViewModel.Item!
     
-    func fill(with viewModel: MoviesListViewModel.Item) {
-        self.viewModel = viewModel
-        titleLabel.text = viewModel.title
-        //dateLabel.text = "\(NSLocalizedString("Release Date", comment: "")): \(viewModel.releaseDate)"
-        dateLabel.text = viewModel.overview.uppercased()
-        overviewLabel.text = String(viewModel.id)
-        viewModel.updatePosterImage(width: Int(posterImageView.frame.size.width * UIScreen.main.scale))
+    func fill(with item: MoviesListViewModel.Item) {
+        self.viewModel = item
+        posterImageView.load(from: item.posterPath, placeholder: UIImage(named: "placeholder_eurosport"))
+        dateLabel.text = item.category.uppercased()
+        titleLabel.text = item.title
         
-        bind(to: viewModel)
-    }
-    
-    func bind(to viewModel: MoviesListViewModel.Item) {
-        viewModel.posterImage.observe(on: self) { [weak self] (data: Data?) in
-            self?.posterImageView.image = data.flatMap{ UIImage(data: $0) }
+        switch item {
+        case is MoviesListViewModel.VideoItem:
+            playImageView.isHidden = false
+            let views = (item as? MoviesListViewModel.VideoItem)?.views ?? 0
+            overviewLabel.text = "\(views) vues"
+        case is MoviesListViewModel.StoryItem:
+            playImageView.isHidden = true
+            //
+            let date = Date(timeIntervalSince1970: TimeInterval(item.timestamp))
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.locale = NSLocale.current
+            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm" //Specify your format that you want
+            let strDate = dateFormatter.string(from: date)
+            //
+            let author = (item as? MoviesListViewModel.StoryItem)?.author ?? ""
+            overviewLabel.text = "Par \(author) - \(strDate)"
+        default:
+            playImageView.isHidden = false
+            overviewLabel.text = ""
         }
+        
     }
-    
-    private func unbind(from item: MoviesListViewModel.Item?) {
-        item?.posterImage.remove(observer: self)
-    }
+
 }
