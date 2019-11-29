@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppAppearance.setupAppearance()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let moviesListViewController = appDIContainer.makeMoviesSceneDIContainer().makeMoviesListViewController()
-        window?.rootViewController = UINavigationController(rootViewController: moviesListViewController)
+        let articlesListViewController = appDIContainer.makeArticlesSceneDIContainer().makeArticlesListViewController()
+        window?.rootViewController = UINavigationController(rootViewController: articlesListViewController)
         window?.makeKeyAndVisible()
 
         return true

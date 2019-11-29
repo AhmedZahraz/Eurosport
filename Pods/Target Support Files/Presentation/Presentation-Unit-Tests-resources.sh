@@ -97,14 +97,12 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MovieDetails/View/MovieDetailsViewController.storyboard"
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MoviesList/View/MoviesListViewController.storyboard"
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MoviesQueriesList/View/MoviesQueriesTableViewController.storyboard"
+  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/ArticlesScene/ArticleDetails/View/ArticleDetailsViewController.storyboard"
+  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/ArticlesScene/ArticlesList/View/ArticlesListViewController.storyboard"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MovieDetails/View/MovieDetailsViewController.storyboard"
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MoviesList/View/MoviesListViewController.storyboard"
-  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/MoviesScene/MoviesQueriesList/View/MoviesQueriesTableViewController.storyboard"
+  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/ArticlesScene/ArticleDetails/View/ArticleDetailsViewController.storyboard"
+  install_resource "${PODS_ROOT}/../Modules/Presentation/Presentation/ArticlesScene/ArticlesList/View/ArticlesListViewController.storyboard"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

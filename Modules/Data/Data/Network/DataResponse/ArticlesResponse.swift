@@ -1,5 +1,5 @@
 //
-//  Movie+Decodable.swift
+//  Article+Decodable.swift
 //  ExampleMVVM
 //
 //  Created by Oleh on 22.09.18.
@@ -83,15 +83,4 @@ public struct VideosResponse: Decodable {
         self.category = try container.decodeIfPresent(String.self, forKey: .category)
         self.views = try container.decodeIfPresent(Int.self, forKey: .views)
     }
-}
-
-fileprivate extension DateFormatter {
-    static let yyyyMMdd: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
 }

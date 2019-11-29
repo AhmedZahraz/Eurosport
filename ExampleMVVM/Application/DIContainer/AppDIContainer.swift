@@ -24,10 +24,10 @@ class AppDIContainer {
     }()
    
     // DIContainers of scenes
-    func makeMoviesSceneDIContainer() -> MoviesSceneDIContainer {
-        let dependencies = MoviesSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
-        return MoviesSceneDIContainer(dependencies: dependencies)
+    func makeArticlesSceneDIContainer() -> ArticlesSceneDIContainer {
+        let dependencies = ArticlesSceneDIContainer.Dependencies(apiDataTransferService: apiDataTransferService)
+        return ArticlesSceneDIContainer(dependencies: dependencies)
     }
 }
 
-extension MoviesSceneDIContainer: MoviesListViewControllersFactory {}
+extension ArticlesSceneDIContainer: ArticlesListViewControllersFactory {}

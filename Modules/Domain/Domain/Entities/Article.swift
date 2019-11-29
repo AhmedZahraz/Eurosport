@@ -1,5 +1,5 @@
 //
-//  Movie.swift
+//  Article.swift
 //  ExampleMVVM
 //
 //  Created by Oleh Kudinov on 01.10.18.
@@ -7,16 +7,7 @@
 
 import Foundation
 
-public typealias MovieId = Int
-
 public typealias Articles = [Article]
-//public struct MoviesPage {
-//    public let articles: [Article]
-//    
-//    public init(articles: [Article]) {
-//        self.articles = articles
-//    }
-//}
 
 public class Article {
     public let timestamp: Int64
@@ -34,9 +25,3 @@ public class Article {
         self.category = category
     }
 }
-
-//extension Movie: Hashable {
-//    public func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//    }
-//}

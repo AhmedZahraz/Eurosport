@@ -1,5 +1,5 @@
 //
-//  MoviesResponse+DomainMapping.swift
+//  ArticlesResponse+DomainMapping.swift
 //  Data
 //
 //  Created by Oleh Kudinov on 12.08.19.
