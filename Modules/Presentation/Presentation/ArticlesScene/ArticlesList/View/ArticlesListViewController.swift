@@ -69,7 +69,7 @@ public class ArticlesListViewController: UIViewController, StoryboardInstantiabl
 
     func showError(_ error: String) {
         guard !error.isEmpty else { return }
-        showAlert(title: NSLocalizedString("Error", comment: ""), message: error)
+        showAlert(title: NSLocalizedString("Erreur", comment: ""), message: error)
     }
     
     private func updateViewsVisibility(model: ArticlesListViewModel) {
