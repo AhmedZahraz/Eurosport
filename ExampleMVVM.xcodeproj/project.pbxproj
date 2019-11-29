@@ -47,7 +47,7 @@
 		1F02DE3422F8507500E40C3A /* ArticlesSceneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesSceneUITests.swift; sourceTree = "<group>"; };
 		1F02DE3622F8507500E40C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F1CD655222368CA00B0143C /* AppConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigurations.swift; sourceTree = "<group>"; };
-		1FA53389201E1FDE00747E55 /* ExampleMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA53389201E1FDE00747E55 /* EurosportTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EurosportTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA5338C201E1FDE00747E55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FA53393201E1FDE00747E55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA53396201E1FDE00747E55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 		1FA5338A201E1FDE00747E55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FA53389201E1FDE00747E55 /* ExampleMVVM.app */,
+				1FA53389201E1FDE00747E55 /* EurosportTest.app */,
 				1F02DE3222F8507500E40C3A /* ExampleMVVMUITests.xctest */,
 			);
 			name = Products;
@@ -238,7 +238,7 @@
 			);
 			name = ExampleMVVM;
 			productName = CodeChallenge;
-			productReference = 1FA53389201E1FDE00747E55 /* ExampleMVVM.app */;
+			productReference = 1FA53389201E1FDE00747E55 /* EurosportTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -608,7 +608,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Oleh-Kudinov.ExampleMVVM";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EurosportTest;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -627,7 +627,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Oleh-Kudinov.ExampleMVVM";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EurosportTest;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
